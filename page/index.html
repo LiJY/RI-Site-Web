@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+	<title>GP - Moteur de recherche</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../dist/css/bootstrap.css" rel="stylesheet">
+	<!-- Bootstrap theme -->
+	<link href="../dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="../css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Moteur de recherche</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-large"></span><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="http://localhost:8085/solr/access/dataimport?command=import">Indexation access</a></li>
+							<li><a href="http://localhost:8080/RI_MoteurRecherche/administration/indexation/repository?path=C:\Users\Alexandre\Desktop\RI\Repository">Indexation repository</a></li>
+							<li class="divider"></li>
+							<li><a href="http://localhost:8085/solr">Solr administration</a></li>
+						</ul>
+					</li>
+				</ul>
+				<div class="navbar-form">
+					<div class="form-group" style="display:inline;">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+							<input id="query" class="form-control" name="search" placeholder="Tapez votre recherche" autocomplete="off" type="text" autofocus data-provide="typeahead">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container-fluid-full">
+		<div class="row-fluid">
+			<!--Catégorie-->
+			<div id="sidebar-left" class="col-lg-2">
+				<div id="cat" class="row nav-collapse sidebar-nav tabbable">
+					<ul class="nav nav-pills nav-stacked">
+						<li class="active"><a href="#projetsTab" data-toggle="tab"><span class="hidden-tablet">Projet</span></a></li>
+						<li><a href="#documentsTab" data-toggle="tab"><span class="hidden-tablet">Documents</a></li>
+					</ul>
+				</div>
+				<!--Facette-->
+				<div id="facet" class="row" style="margin-top:20px;">
+					Facette
+				</div>
+			</div>
+
+			<!--Content-->
+			<div id="content" class="tab-content col-lg-8 col-lg-offset-1">
+				<div class="tab-pane active line" id="projetsTab">
+					<div class="pag">
+						<div id="page_navigationAccess" class=" col-lg-offset-3">
+						</div>
+					</div>
+					<div id="projets" class="line">
+					</div>
+				</div>
+				<div class="tab-pane line" id="documentsTab">
+					<div id="page_navigationRepo" class="line2 col-lg-offset-3">
+					</div>
+					<div id="documents" class="line">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Modal-->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 id="myModalLabel" class="modal-title" >test</h4>
+					</div>
+					<div class="modal-body" id="myModalBody">
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseProjet">
+											Projet
+										</a>
+									</h4>
+								</div>
+								<div id="collapseProjet" class="panel-collapse collapse in">
+									<div id="projetDetail" class="panel-body">
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseLocalisation">
+											Localisations
+										</a>
+									</h4>
+								</div>
+								<div id="collapseLocalisation" class="panel-collapse collapse">
+									<div id="localisationDetail" class="panel-body">
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAvancement">
+											Avancement
+										</a>
+									</h4>
+								</div>
+								<div id="collapseAvancement" class="panel-collapse collapse">
+									<div id="avancementDetail"class="panel-body">
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThematique">
+											Thématiques
+										</a>
+									</h4>
+								</div>
+								<div id="collapseThematique" class="panel-collapse collapse">
+									<div id="thematiqueDetail"class="panel-body">
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThematiqueDD">
+											Thématiques DD
+										</a>
+									</h4>
+								</div>
+								<div id="collapseThematiqueDD" class="panel-collapse collapse">
+									<div id="thematiqueDDDetail"class="panel-body">
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFinancement">
+											Financements
+										</a>
+									</h4>
+								</div>
+								<div id="collapseFinancement" class="panel-collapse collapse">
+									<div id="financementDetail"class="panel-body">
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+<!-- Bootstrap core JavaScript
+==================================================
+Placed at the end of the document so the pages load faster-->
+<script src="../js/jquery-2.0.3.js"></script>
+<script src="../js/paginationAccess.js"></script>
+<script src="../js/paginationRepository.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/solr.js"></script>
+<script src="../dist/js/bootstrap.min.js"></script>
+<script src="../js/typeahead.js"></script>
+
+<script>
+$('#query').typeahead({
+  name: 'countries',
+  // prefetch: '../data/countries.json',
+  // local:['aaa','bbb','ccc'],
+  // limit: 10,
+});
+</script>
+
+</html>
