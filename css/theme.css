@@ -20,11 +20,22 @@ body {
 	background: #eee;
 }
 
-#sidebar-left{
-
+/*#sidebar-left{
+	position: absolute;
+	margin-top: 3px;
+	border: dashed;
+	height: 100%;
+	float: left;
 }
-
+*/
 .pagination{
 	margin-top:0px;
 }
+
+
+/*#projets{
+	border: dashed;
+	float: right;
+
+}*/
 

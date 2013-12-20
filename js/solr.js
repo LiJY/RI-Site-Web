@@ -34,7 +34,7 @@ function on_dataAccess(data) {
       + item.NomGP
       +'</div>'
       + '<button id="'+item.NumGP+ '" class="modalbutton btn btn-info btn-sm col-lg-1" data-toggle="modal" data-target="#myModal">details</button>'
-      + '<button id="'+item.NumGP+ '" class="googleButton btn btn-primary btn-sm col-lg-1">google</button>'));
+      + '<button class="googleButton btn btn-primary btn-sm col-lg-1">google</button>'));
   });
 
 
@@ -78,37 +78,30 @@ function on_search() {
   });
 }
 
-function on_searchNumGP(NumGP,methode) {
-  $.getJSON(accessURL + "&json.wrf=" + methode,{
+function on_detailSearch(NumGP) {
+  $.getJSON(accessURL + "&json.wrf=remplir_modal",{
     q : "NumGP:" +NumGP,
-  });
-}
-
-// function on_detailSearch(NumGP) {
-//   $.getJSON(accessURL + "&json.wrf=remplir_modal",{
-//     q : "NumGP:" +NumGP,
-//   });
-// }
-
-function on_ready() {
-  $('#search').click(on_search());
-  /* Hook enter to search */
-  $('#query').keypress(function(e) {
-    if (e.keyCode == '13') {
-      on_search();
-    }
   });
 }
 
 function googleSearch(data) {
   var item = data.response.docs[0];
   window.open("https://www.google.fr/#q="+item.NomGP);
-  // return item.NomGP;
+}
+
+function on_ready() {
+  $('#search').click(on_search());
+  /* Hook enter to search */
+  $('body').keypress(function(e) {
+    if (e.keyCode == '13') {
+      on_search();
+    }
+  });
 }
 
 $('#projets').on('click', '.modalbutton', function(){
   var NumGP = $( this ).attr("id");
-  on_searchNumGP(NumGP,"remplir_modal")
+  on_detailSearch(NumGP)
 });
 
 $('#projets').on('click', '.googleButton', function(){
